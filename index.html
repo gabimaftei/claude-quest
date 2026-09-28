@@ -4476,23 +4476,57 @@ async function pushSave(sub) {
   const j = sub.toJSON();
   await net.sb.from('push_subs').insert({ user_id: net.uid, endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth });
 }
+function pushProblem(title, text, extra) {
+  openSheet(`<div style="text-align:center"><span style="font-size:56px">🔔</span><h2>${title}</h2><p class="muted">${text}</p></div>
+    <div class="sheet-actions">${extra || ''}<button class="btn ghost plain" data-act="close-sheet">Close</button></div>`, true);
+}
 async function pushEnable() {
   if (IS_IOS && !isInstalled()) {
-    openSheet(`<div style="text-align:center"><span style="font-size:56px">🔔</span><h2>First add the game to your home screen</h2><p class="muted">On iPhone, notifications only work in the home screen app. Add it, open it from there, then turn on notifications.</p></div>
-      <div class="sheet-actions"><button class="btn" data-act="install">Show me how</button><button class="btn ghost plain" data-act="close-sheet">Later</button></div>`, true);
+    pushProblem('First add the game to your home screen', 'On iPhone, notifications only work in the home screen app. Add it (keep <b>Open as Web App</b> turned on), open it from the new icon, then turn on notifications.', '<button class="btn" data-act="install">Show me how</button>');
     return;
   }
-  if (!pushSupported()) { toast('This browser cannot show notifications.'); return; }
+  if (!pushSupported()) {
+    pushProblem('Notifications are not available here', IS_IOS ? 'Delete the Claude Quest icon from your home screen. Then open the game in <b>Safari</b>, tap Share → <b>Add to Home Screen</b>, keep <b>Open as Web App</b> on, and tap Add. Open it from the new icon and try again. (Needs iOS 16.4 or newer.)' : 'Open the game in Chrome and try again.', IS_IOS ? '<button class="btn" data-act="install">Show me how</button>' : '');
+    return;
+  }
+  if (Notification.permission === 'denied') {
+    pushProblem('Notifications are blocked', IS_IOS ? 'Open iPhone <b>Settings → Notifications → Claude Quest</b> and turn on <b>Allow Notifications</b>. Then come back here.' : 'Allow notifications for this site in your browser settings, then try again.');
+    return;
+  }
+  let step = 'permission';
   try {
     const perm = await Notification.requestPermission();
-    if (perm !== 'granted') { toast('Notifications are blocked. Allow them in your phone settings.'); return; }
-    const reg = await swReg(); if (!reg) throw new Error('sw');
+    if (perm !== 'granted') { toast('You did not allow notifications. You can try again any time.'); return; }
+    step = 'service worker';
+    const reg = await navigator.serviceWorker.register('sw.js');
     await navigator.serviceWorker.ready;
+    step = 'subscribe';
     let sub = await reg.pushManager.getSubscription();
     if (!sub) sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: b64u(window.CQ_CONFIG.vapidPublic) });
-    await pushSave(sub); net.pushOk = true;
-    toast('Notifications are on! 🔔'); closeSheet(); render();
-  } catch (e) { toast('Could not turn on notifications. Try again.'); }
+    step = 'save';
+    const j = sub.toJSON();
+    const { error } = await net.sb.from('push_subs').insert({ user_id: net.uid, endpoint: j.endpoint, p256dh: j.keys.p256dh, auth: j.keys.auth });
+    if (error) throw new Error(error.message);
+    net.pushOk = true;
+    try { localStorage.setItem('cq-push-asked', '1'); } catch (e) { }
+    closeSheet(); render(); toast('Notifications are on! 🔔');
+    const reg2 = await navigator.serviceWorker.ready;
+    reg2.showNotification('Claude Quest', { body: 'Notifications work! 🎉 You will hear from your friends here.', icon: 'icon-192.png', tag: 'welcome' });
+  } catch (e) {
+    pushProblem('Could not turn on notifications', 'Something failed at step: <b>' + esc(step) + '</b>.<br><span class="small">' + esc(String((e && e.message) || e).slice(0, 160)) + '</span><br>Send a screenshot of this to the person who set up the game.', '<button class="btn" data-act="push-on">Try again</button>');
+  }
+}
+/* in the home screen app, ask once (the tap on the button is what iPhone needs) */
+function maybeAskPush() {
+  if (!ONLINE || !isInstalled() || !pushSupported() || Notification.permission !== 'default') return;
+  let asked = false; try { asked = !!localStorage.getItem('cq-push-asked'); } catch (e) { }
+  if (asked) return;
+  try { localStorage.setItem('cq-push-asked', '1'); } catch (e) { }
+  setTimeout(() => {
+    if (ui.sess || ui.sheet) return;
+    openSheet(`<div style="text-align:center"><span style="font-size:64px">🔔</span><h2>Turn on notifications?</h2><p class="muted">Know when a friend challenges you to a duel, cheers for you or passes you in the league. We also remind you before your streak ends.</p></div>
+      <div class="sheet-actions"><button class="btn" data-act="push-on">Turn on notifications</button><button class="btn ghost plain" data-act="close-sheet">Not now</button></div>`, true);
+  }, 1200);
 }
 async function pushDisable() {
   try {
@@ -4517,7 +4551,7 @@ async function netEnter() {
   afterLoad();
   if (S.onboarded && S.pos !== currentIndex()) save();
   loadBoard(true);
-  startRealtime(); pushCheck();
+  startRealtime(); pushCheck(); maybeAskPush();
   swReg();
 }
 async function netBoot() {
@@ -4572,7 +4606,7 @@ function installPhone(os) {
     <div class="ih-finger"></div></div></div>`;
 }
 const INSTALL_STEPS = {
-  ios: ['Tap the <b>Share</b> button at the bottom of Safari. (On new iPhones: tap <b>⋯</b> first, then <b>Share</b>.)', 'Scroll down and tap <b>Add to Home Screen</b>. (You may need to tap <b>View More</b>.)', 'Tap <b>Add</b> in the top corner.', 'Done! Open <b>Claude Quest</b> from your home screen.'],
+  ios: ['Tap the <b>Share</b> button at the bottom of Safari. (On new iPhones: tap <b>⋯</b> first, then <b>Share</b>.)', 'Scroll down and tap <b>Add to Home Screen</b>. (You may need to tap <b>View More</b>.)', 'Keep <b>Open as Web App</b> turned on, then tap <b>Add</b> in the top corner.', 'Done! Open <b>Claude Quest</b> from your home screen.'],
   android: ['Tap the <b>⋮</b> menu at the top right of Chrome.', 'Tap <b>Add to Home screen</b> (or <b>Install app</b>).', 'Tap <b>Add</b> (or <b>Install</b>).', 'Done! Open <b>Claude Quest</b> from your home screen.'],
 };
 function openInstall(os) {
