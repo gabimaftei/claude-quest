@@ -4382,7 +4382,7 @@ async function liveInvite(friendId) {
   const { data, error } = await net.sb.rpc('live_invite', { opponent: friendId, seed, upto });
   if (error) { toast(/slow down/.test(error.message) ? 'Too many invites. Wait a little.' : 'Could not send the invite.'); return; }
   live.id = data; live.row = { id: data, a: net.uid, b: friendId, seed, upto, status: 'invited' };
-  let left = 60;
+  let left = 90;
   openSheet(`<div style="text-align:center">${avatarEl(f, 'av-xl')}<h2 style="margin-top:10px">Waiting for ${esc(f.display_name)}…</h2>
     <p class="muted">We sent them a live duel invite${isOnline(friendId) ? '' : ' and a notification'}. <span id="live-left" class="tabnum">${left}</span>s</p><div class="live-pulse">⚡</div></div>
     <div class="sheet-actions"><button class="btn ghost plain" data-act="live-cancel">Cancel</button></div>`, true);
@@ -4394,10 +4394,10 @@ async function liveInvite(friendId) {
 }
 function liveCancel() { clearInterval(live.waitTimer); if (live.id) net.sb.rpc('live_cancel', { duel: live.id }); live.id = null; live.row = null; closeSheet(); }
 function onLive(row) {
-  if (!row || !row.id) return;
+  if (!row || !row.id || !S.onboarded) return;
   const mineA = row.a === net.uid, other = mineA ? row.b : row.a, name = friendName(other);
   if (row.status === 'invited' && row.b === net.uid) {
-    if (Date.now() - new Date(row.created_at).getTime() > 90000) return;
+    if (Date.now() - new Date(row.created_at).getTime() > 110000) return;
     live.row = row; live.id = row.id;
     sfx('chest'); buzz([60, 60, 60]);
     const f = friendRow(other) || { id: other, display_name: name };
@@ -4461,6 +4461,27 @@ function liveDone(row) {
   rtRefresh();
 }
 
+/* a tap on a notification opens the matching screen */
+function openScreen(what) {
+  if (ui.sess && !(what === 'live')) return;
+  closeSheet(); ui.pop = null;
+  if (what === 'duel' || what === 'live') { ui.tab = 'league'; ui.fr = 'duels'; }
+  else if (what === 'cheer') { ui.tab = 'league'; ui.fr = 'feed'; }
+  else if (what === 'pass') { ui.tab = 'league'; ui.fr = 'rank'; ui.board = 'week'; }
+  else if (what === 'streak') { ui.tab = 'learn'; ui.scrollToCurrent = true; }
+  render(); loadBoard(true);
+  if (what === 'live') checkLiveInvite(true);
+}
+/* a live invite that arrived while the app was closed */
+async function checkLiveInvite(say) {
+  if (!net.sb || !net.uid) return;
+  try {
+    const { data } = await net.sb.from('live_duels').select('*').eq('b', net.uid).eq('status', 'invited').order('created_at', { ascending: false }).limit(1);
+    const row = data && data[0];
+    if (row && Date.now() - new Date(row.created_at).getTime() < 110000) { if (!(ui.sess && ui.sess.opts.duel && ui.sess.opts.duel.live)) onLive(row); }
+    else if (say) toast('That live duel invite has expired. Challenge them back!');
+  } catch (e) { }
+}
 /* ---------------- push notifications ---------------- */
 const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 const pushOn = () => pushSupported() && Notification.permission === 'granted' && !!net.pushOk;
@@ -4551,7 +4572,9 @@ async function netEnter() {
   afterLoad();
   if (S.onboarded && S.pos !== currentIndex()) save();
   loadBoard(true);
-  startRealtime(); pushCheck(); maybeAskPush();
+  startRealtime(); pushCheck();
+  if (net.openAfter) { const o = net.openAfter; net.openAfter = ''; openScreen(o); } else { checkLiveInvite(); maybeAskPush(); }
+  if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', (e) => { if (e.data && e.data.open) openScreen(e.data.open); });
   swReg();
 }
 async function netBoot() {
@@ -4561,6 +4584,7 @@ async function netBoot() {
   let session = null, authError = '';
   try { const r = await net.sb.auth.getSession(); session = r.data.session; } catch (e) { }
   const qs = new URLSearchParams(location.search);
+  net.openAfter = qs.get('open') || '';
   if (qs.get('error_description')) authError = 'Login was cancelled or failed. Please try again.';
   if (location.search || location.hash) history.replaceState(null, '', location.pathname);
   if (!session) return loginScreen(authError);
@@ -4663,7 +4687,7 @@ async function boot() {
   initSample();
   document.addEventListener('visibilitychange', () => {
     if (document.hidden) flushSave();
-    else if (!ui.sess && ui.ready) { tick(); render(); cloudRefresh(); if (ONLINE && net.uid) loadBoard(true); }
+    else if (!ui.sess && ui.ready) { tick(); render(); cloudRefresh(); if (ONLINE && net.uid) { loadBoard(true); checkLiveInvite(); } }
   });
   window.addEventListener('pagehide', flushSave);
   window.addEventListener('blur', flushSave);
