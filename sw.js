@@ -2,7 +2,7 @@
    No caching, so game updates are instant. */
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
-const SCREENS = ['duel', 'live', 'cheer', 'pass', 'streak'];
+const SCREENS = ['duel', 'live', 'cheer', 'pass', 'streak', 'chat'];
 self.addEventListener('push', (e) => {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (x) { d = { body: e.data ? e.data.text() : '' }; }

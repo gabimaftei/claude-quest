@@ -536,6 +536,54 @@ button.lrow:active{background:var(--bg2)}
 .countdown .n{font-size:120px;line-height:1;color:var(--gold);display:block;animation:popin .5s ease}
 .push-card{display:flex;align-items:center;gap:12px;margin-bottom:12px;border-color:#84d8ff;background:var(--blue-bg)}
 .push-card{position:relative}.push-x{position:absolute;top:2px;right:8px;font-size:20px;color:var(--muted);background:none;border:0;padding:4px}
+/* online strip */
+.online-strip{border:2px solid var(--line);border-radius:var(--r);padding:10px 12px;margin-bottom:12px;background:var(--card)}
+.online-strip.empty{text-align:center;padding:10px}
+.os-title{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--green-ink);display:flex;align-items:center;gap:6px}
+.os-list{display:flex;gap:14px;overflow-x:auto;padding:8px 2px 2px;scrollbar-width:none}
+.os-item{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:64px;background:none;border:0;padding:0;color:inherit;font:inherit}
+.os-item .av{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;font-size:20px;overflow:hidden;box-shadow:0 0 0 3px var(--bg),0 0 0 5px var(--green)}
+.os-item b{font-size:13px;max-width:72px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.os-item small{font-size:10.5px;color:var(--muted);font-weight:700;white-space:nowrap}
+.os-item .dot-on{position:absolute;right:0;bottom:0}
+.fr-tabs button{font-size:12.5px;padding:7px 4px}
+/* chat */
+.chat-page{display:flex;flex-direction:column;min-height:100%;padding-bottom:0}
+.convs{display:flex;gap:8px;overflow-x:auto;padding:2px 0 8px;scrollbar-width:none;margin:0 -16px;padding-left:16px;padding-right:16px}
+.conv{display:flex;align-items:center;gap:6px;padding:5px 12px 5px 5px;border-radius:24px;border:2px solid var(--line-strong);background:var(--card);font-weight:800;font-size:13px;white-space:nowrap;flex:none;position:relative;color:inherit}
+.conv.on{border-color:#84d8ff;background:var(--blue-bg);color:var(--blue-d)}
+.conv .fav{width:28px;height:28px;border:0;font-size:12px}
+.conv .fav.grp{background:var(--bg2);font-size:15px}
+.conv .dot-on{width:10px;height:10px;position:absolute;right:-2px;bottom:-2px}
+.chat-head{display:flex;align-items:center;gap:6px;padding:6px 2px 8px;border-bottom:2px solid var(--line);margin-bottom:6px}
+.chat-head .linkbtn{margin-left:auto}
+.chat{flex:1;display:flex;flex-direction:column;gap:2px;padding:6px 0}
+.chat-empty{text-align:center;color:var(--muted);padding:30px 0}
+.chat-empty .pipsvg{width:90px;height:90px}
+.chat-day{align-self:center;font-size:11px;font-weight:800;color:var(--muted);background:var(--bg2);border-radius:10px;padding:3px 10px;margin:10px 0 6px;text-transform:uppercase;letter-spacing:.05em}
+.msg{display:flex;align-items:flex-end;gap:6px;margin-top:8px}
+.msg.cont{margin-top:2px}
+.msg.me{justify-content:flex-end}
+.msg-av{width:30px;flex:none;background:none;border:0;padding:0}
+.msg-av .fav{width:30px;height:30px;border:0;font-size:12px}
+.bubble-wrap{max-width:78%;display:flex;flex-direction:column}
+.msg.me .bubble-wrap{align-items:flex-end}
+.msg-name{font-size:11px;font-weight:800;color:var(--muted);margin:0 0 2px 10px}
+.bub{text-align:left;font:inherit;font-weight:600;font-size:15px;line-height:1.35;padding:8px 12px 6px;border-radius:18px;background:var(--bg2);color:var(--ink);border:0;white-space:pre-wrap;word-break:break-word}
+.msg:not(.me) .bub{border-bottom-left-radius:6px}
+.msg.me .bub{background:var(--blue);color:#fff;border-bottom-right-radius:6px}
+.bub.big{font-size:40px;background:none!important;padding:0 4px;line-height:1.1}
+.msg-t{display:inline-block;font-size:10px;font-weight:700;opacity:.6;margin-left:8px;vertical-align:-1px}
+.bub.big .msg-t{display:block;font-size:10px;color:var(--muted);opacity:1;margin:0}
+.typing{min-height:18px;font-size:12px;font-weight:700;color:var(--muted);padding:2px 4px;font-style:italic}
+.quick{display:flex;gap:6px;overflow-x:auto;padding:4px 0 6px;scrollbar-width:none}
+.quick button{flex:none;border:2px solid var(--line-strong);border-radius:16px;background:var(--card);padding:3px 9px;font-size:18px;color:inherit}
+.quick button.q-txt{font-size:13px;font-weight:800}
+.composer{position:sticky;bottom:0;display:flex;gap:8px;padding:8px 0 10px;background:var(--bg);margin:0 -16px;padding-left:16px;padding-right:16px;border-top:2px solid var(--line)}
+.composer input{flex:1;min-width:0;border:2px solid var(--line-strong);border-radius:22px;padding:10px 14px;font:inherit;font-size:16px;background:var(--card);color:var(--ink)}
+.composer input:focus{outline:none;border-color:var(--blue)}
+.composer .send{width:44px;height:44px;border-radius:50%;background:var(--blue);color:#fff;border:0;font-size:18px;flex:none;box-shadow:0 3px 0 var(--blue-d)}
+.fr-tabs button{white-space:nowrap}
 
 </style></head><body>
 <div id="app"></div>
@@ -3097,7 +3145,7 @@ function render() {
   } else main.scrollTop = keepScroll;
   flushToasts();
 }
-const navBtn = (id, ic, label) => { const n = ONLINE && id === 'league' && net.uid ? duelsForMe().length : 0; return `<button data-act="tab" data-id="${id}" ${ui.tab === id ? 'aria-current="page"' : ''} style="position:relative">${ic}<span>${label}</span>${n ? `<b class="nav-dot">${n}</b>` : ''}</button>`; };
+const navBtn = (id, ic, label) => { const n = ONLINE && id === 'league' && net.uid ? duelsForMe().length + unread() : 0; return `<button data-act="tab" data-id="${id}" ${ui.tab === id ? 'aria-current="page"' : ''} style="position:relative">${ic}<span>${label}</span>${n ? `<b class="nav-dot">${n}</b>` : ''}</button>`; };
 function renderTab() {
   if (ui.tab === 'learn') return renderPath();
   if (ui.tab === 'practice') return renderPractice();
@@ -3329,6 +3377,7 @@ function startSession(kind, opts) {
   document.body.classList.toggle('reduce', !S.settings.motion);
   mountLesson();
   if (timer) startTimer();
+  if (ONLINE) netStatus();
 }
 function pickQuestions(pool, n, preferHard) {
   const w = { mc: 1, tf: .7, fb: 1.2, pick: 1, match: 1.3, ord: 1.5, ms: 1.6, build: 1.5, type: 1.4 };
@@ -3670,6 +3719,7 @@ function closeLesson() {
   ui.sess = null; ui.scrollToCurrent = ui.tab === 'learn';
   const el = $('.lesson'); if (el) el.remove();
   render();
+  if (ONLINE) netStatus();
 }
 
 /* ---------------- sheets ---------------- */
@@ -3873,7 +3923,12 @@ document.addEventListener('click', (e) => {
     case 'live-decline': liveDecline(); break;
     case 'install-os': openInstall(id); break;
     case 'install-now': if (installEvt) { installEvt.prompt(); installEvt = null; } closeSheet(); break;
-    case 'fr': ui.fr = id; sfx('tap'); render(); break;
+    case 'fr': ui.fr = id; sfx('tap'); if (id === 'chat') { openChat(ui.conv || newestUnreadConv()); break; } render(); break;
+    case 'conv': ui.conv = id; ui.draft = ''; sfx('tap'); render(); requestAnimationFrame(scrollChat); break;
+    case 'dm': openChat(id); break;
+    case 'quick': sendMsg(id); break;
+    case 'msg-menu': openConfirm('Delete this message?', 'It will be removed for everyone.', 'msg-del', 'Delete'); ui.delMsg = +id; break;
+    case 'msg-del': closeSheet(); net.sb.from('messages').delete().eq('id', ui.delMsg).then(({ error }) => { if (!error) { net.msgs = net.msgs.filter((m) => m.id !== ui.delMsg); refreshChat(); } }); break;
     case 'friend': sfx('tap'); openFriend(id); break;
     case 'friends-here': openFriendsHere(id); break;
     case 'cheer': sendCheer(id, t.dataset.e); break;
@@ -3883,6 +3938,18 @@ document.addEventListener('click', (e) => {
     case 'do-leave': netLeave(); break;
     case 'close-lesson': closeLesson(); break;
   }
+});
+document.addEventListener('submit', (e) => {
+  if (e.target.id !== 'chat-form') return;
+  e.preventDefault();
+  const i = $('#chat-in'); const v = i.value; if (!v.trim()) return;
+  i.value = ''; ui.draft = '';
+  sendMsg(v).then((ok) => { if (ok === false && !i.value) { i.value = v; ui.draft = v; } });
+});
+document.addEventListener('input', (e) => { if (e.target.id === 'chat-in') { ui.draft = e.target.value; sendTyping(); } });
+document.addEventListener('pointerdown', (e) => { if (e.target.closest('.composer .send')) e.preventDefault(); });
+document.addEventListener('focusout', (e) => {
+  if (e.target.id === 'chat-in' && ui.needRender) setTimeout(() => { const a = document.activeElement; if (!(a && a.id === 'chat-in')) softRender(); }, 400);
 });
 document.addEventListener('change', (e) => {
   if (e.target.id === 'name-in') { S.name = e.target.value.trim().slice(0, 24); save(); if (ONLINE && S.name) netRename(S.name); }
@@ -3906,7 +3973,7 @@ document.addEventListener('keydown', (e) => {
     const b = btns[+e.key - 1]; if (b) b.click();
   }
 });
-function closeLessonQuiet() { if (ui.sess && ui.sess.iv) clearInterval(ui.sess.iv); ui.sess = null; const el = $('.lesson'); if (el) el.remove(); }
+function closeLessonQuiet() { if (ui.sess && ui.sess.iv) clearInterval(ui.sess.iv); ui.sess = null; const el = $('.lesson'); if (el) el.remove(); if (ONLINE) netStatus(); }
 function matchTap(t) {
   const s = ui.sess, st = s.state, it = currentItem(), side = t.dataset.side, j = +t.dataset.j;
   const list = side === 'L' ? st.left : st.right;
@@ -4101,7 +4168,7 @@ async function loadBoard(force) {
   try {
     flushSave();
     const [p, d, ev, ch] = await Promise.all([
-      net.sb.from('profiles').select('id,display_name,avatar_path,xp,week_start,week_xp,prev_week_xp,streak,lessons_done,badges,pos,recent,timed_best').limit(500),
+      net.sb.from('profiles').select('id,display_name,avatar_path,xp,week_start,week_xp,prev_week_xp,streak,lessons_done,badges,pos,recent,timed_best,updated_at').limit(500),
       net.sb.from('duels').select('*').order('created_at', { ascending: false }).limit(60),
       net.sb.from('events').select('id,user_id,kind,data,created_at').order('created_at', { ascending: false }).limit(60),
       net.sb.from('cheers').select('id,from_id,emoji').eq('to_id', net.uid).eq('seen', false).limit(20),
@@ -4116,7 +4183,7 @@ async function loadBoard(force) {
     if (net.rows) { duelNews(); overtakeNews(); }
   } catch (e) { }
   net.loading = false;
-  if ((ui.tab === 'league' || ui.tab === 'profile' || ui.tab === 'learn') && !ui.sess && !ui.sheet) render(); else flushToasts();
+  if ((ui.tab === 'league' || ui.tab === 'profile' || ui.tab === 'learn') && !ui.sess && !ui.sheet) softRender(); else flushToasts();
 }
 const CHEERS = { fire: '🔥', clap: '👏', muscle: '💪', party: '🎉', nudge: '⏰' };
 const friendRow = (id) => (net.rows || []).find((r) => r.id === id);
@@ -4236,7 +4303,7 @@ function openFriend(id) {
   const ahead = friendPos(r) - myPos();
   const champ = champion() === id;
   openSheet(`<div style="text-align:center">${avatarEl(r, 'av-xl')}<h2 style="margin-top:8px">${esc(r.display_name)} ${champ ? '<span title="Last week\'s champion">👑</span>' : ''}</h2>
-    <p class="muted small">${isOnline(id) ? '<span class="dot-on live"></span> <b style="color:var(--green-ink)">Online now</b>' : activeToday(r) ? '<span class="dot-on"></span> Learned today' : 'Not active today yet'}</p>
+    <p class="muted small">${isOnline(id) ? '<span class="dot-on live"></span> <b style="color:var(--green-ink)">${esc(statusOf(id))}</b>' : activeToday(r) ? '<span class="dot-on"></span> Learned today · ' + lastSeen(r) : 'Not active today yet · ' + lastSeen(r)}</p>
     <p class="small" style="margin-top:4px"><b>${esc(whereLabel(friendPos(r)))}</b><br><span class="muted">${ahead > 0 ? plural(ahead, 'step') + ' ahead of you' : ahead < 0 ? plural(-ahead, 'step') + ' behind you' : 'Same place as you!'}</span></p></div>
     <div class="vs"><div class="vs-h"><span>You</span><span></span><span>${esc(r.display_name)}</span></div>
     ${rowsCmp.map(([l, k, u]) => { const f = (v) => k === 'streak' ? plural(v, 'day') : v + u; return `<div class="vs-r"><b class="${me[k] > them[k] ? 'win' : ''}">${f(me[k])}</b><span>${l}</span><b class="${them[k] > me[k] ? 'win' : ''}">${f(them[k])}</b></div>`; }).join('')}
@@ -4245,6 +4312,7 @@ function openFriend(id) {
     <div class="bars">${days.map((k) => { const v = (r.recent || {})[k] || 0; return `<i title="${k}: ${v} XP" style="height:${v ? Math.max(12, v / maxD * 100) : 4}%;${v ? '' : 'background:var(--line)'}"></i>`; }).join('')}</div>
     <div class="cheers">${['fire', 'clap', 'muscle', 'party'].map((e) => `<button data-act="cheer" data-id="${r.id}" data-e="${e}" aria-label="Send ${e}">${CHEERS[e]}</button>`).join('')}${activeToday(r) ? '' : `<button data-act="cheer" data-id="${r.id}" data-e="nudge" aria-label="Nudge">${CHEERS.nudge}</button>`}</div>
     <div class="sheet-actions">
+      <button class="btn" data-act="dm" data-id="${r.id}">💬 Message</button>
       <button class="btn gold" data-act="live" data-id="${r.id}">⚡ Live duel${isOnline(id) ? ' now' : ' (sends a notification)'}</button>
       <button class="btn ${incoming ? '' : 'blue'}" data-act="duel" data-id="${r.id}" ${open && !incoming ? 'disabled' : ''}>${incoming ? '⚔️ Accept duel · beat ' + open.challenger_score : open ? 'Duel sent · waiting' : '⚔️ Challenge to a duel'}</button>
       <button class="btn ghost plain" data-act="close-sheet">Close</button></div>
@@ -4279,7 +4347,10 @@ function renderFriends() {
   if (!net.rows) { loadBoard(); return `<div class="page"><h1 class="h-page">Friends league</h1><p class="lead">Loading the leaderboard…</p></div>`; }
   if (Date.now() - net.loadedAt > 30000) loadBoard();
   const view = ui.fr || 'rank', waiting = duelsForMe().length;
-  let html = `<div class="page">${pushCard()}<div class="seg fr-tabs"><button data-act="fr" data-id="rank" aria-pressed="${view === 'rank'}">Ranking</button><button data-act="fr" data-id="duels" aria-pressed="${view === 'duels'}">Duels${waiting ? ` <span class="badge-n">${waiting}</span>` : ''}</button><button data-act="fr" data-id="feed" aria-pressed="${view === 'feed'}">Activity</button></div>`;
+  if (view === 'chat') markRead(ui.conv || 'all');
+  const unr = unread();
+  let html = `<div class="page ${view === 'chat' ? 'chat-page' : ''}">${view === 'chat' ? '' : pushCard() + onlineStrip()}<div class="seg fr-tabs"><button data-act="fr" data-id="rank" aria-pressed="${view === 'rank'}">🏆 Rank</button><button data-act="fr" data-id="duels" aria-pressed="${view === 'duels'}">⚔️ Duels${waiting ? ` <span class="badge-n">${waiting}</span>` : ''}</button><button data-act="fr" data-id="chat" aria-pressed="${view === 'chat'}">💬 Chat${unr ? ` <span class="badge-n">${unr}</span>` : ''}</button><button data-act="fr" data-id="feed" aria-pressed="${view === 'feed'}">📣 News</button></div>`;
+  if (view === 'chat') return html + renderChat() + '</div>';
   if (view === 'duels') html += renderDuels(); else if (view === 'feed') html += renderFeed(); else html += renderRanking();
   return html + `<div class="list" style="margin-top:16px"><button class="btn blue" data-act="invite">Invite friends</button><button class="btn ghost plain" data-act="board-refresh">Refresh</button></div></div>`;
 }
@@ -4363,19 +4434,37 @@ function startRealtime() {
       .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'events' }, rtRefresh)
       .on('postgres_changes', { event: '*', schema: 'public', table: 'profiles' }, rtRefresh)
       .on('postgres_changes', { event: '*', schema: 'public', table: 'live_duels' }, (p) => onLive(p.new))
+      .on('postgres_changes', { event: 'INSERT', schema: 'public', table: 'messages' }, (p) => onMessage(p.new))
+      .on('postgres_changes', { event: 'DELETE', schema: 'public', table: 'messages' }, (p) => { if (p.old && p.old.id) { net.msgs = net.msgs.filter((m) => m.id !== p.old.id); if (inChat()) refreshChat(); } })
       .subscribe();
-    net.online = new Set();
-    net.lobby = net.sb.channel('lobby', { config: { private: true, presence: { key: net.uid } } })
+    net.online = new Set(); net.presence = {};
+    net.lobby = net.sb.channel('lobby', { config: { private: true, presence: { key: net.uid }, broadcast: { self: false } } })
       .on('presence', { event: 'sync' }, () => {
-        const st = net.lobby.presenceState(); const before = [...net.online].sort().join();
-        net.online = new Set(Object.keys(st));
-        if ([...net.online].sort().join() !== before && !ui.sess && !ui.sheet && (ui.tab === 'league' || ui.tab === 'learn')) render();
+        const st = net.lobby.presenceState(); const before = JSON.stringify(net.presence);
+        net.presence = {}; Object.entries(st).forEach(([k, v]) => { const m = (v && v[v.length - 1]) || {}; net.presence[k] = { st: m.st || 'online' }; });
+        net.online = new Set(Object.keys(net.presence));
+        if (JSON.stringify(net.presence) !== before && !ui.sess && !ui.sheet && (ui.tab === 'league' || ui.tab === 'learn')) softRender();
       })
-      .subscribe((status) => { if (status === 'SUBSCRIBED') net.lobby.track({ at: Date.now() }); });
+      .on('broadcast', { event: 'typing' }, ({ payload }) => onTyping(payload))
+      .subscribe((status) => { if (status === 'SUBSCRIBED') netStatus(); });
   } catch (e) { }
 }
 const isOnline = (id) => !!(net.online && net.online.has(id) && id !== net.uid);
-const live = { id: null, waitTimer: null };
+const live = { id: null, waitTimer: null, started: new Set() };
+/* what I am doing right now, shown to friends next to my name */
+function netStatus() {
+  if (!net.lobby) return;
+  const s = ui.sess, st = !s ? 'online' : s.opts && s.opts.duel ? 'duel' : s.kind === 'timed' ? 'speed' : 'lesson';
+  try { net.lobby.track({ st, at: Date.now() }); } catch (e) { }
+}
+const STATUS = { online: 'Online', lesson: 'In a lesson', duel: 'In a duel ⚔️', speed: 'Speed round' };
+const statusOf = (id) => (net.presence && net.presence[id] && STATUS[net.presence[id].st]) || 'Online';
+/* re-render, but never while someone is typing a chat message */
+function softRender() {
+  const a = document.activeElement;
+  if (a && a.id === 'chat-in') { ui.needRender = true; return; }
+  ui.needRender = false; render();
+}
 async function liveInvite(friendId) {
   const f = friendRow(friendId); if (!f) return;
   const seed = Math.floor(Math.random() * 2e9), upto = Math.min(myPos(), friendPos(f));
@@ -4410,7 +4499,7 @@ function onLive(row) {
   live.row = row;
   if (row.status === 'expired' && row.b === net.uid && ui.sheet && !ui.sess) { closeSheet(); toast(name + ' cancelled the duel.'); live.id = null; }
   if (row.status === 'declined' && mineA) { clearInterval(live.waitTimer); closeSheet(); toast(name + ' said not now.'); live.id = null; }
-  if (row.status === 'accepted' && !(ui.sess && ui.sess.opts.duel && ui.sess.opts.duel.live === row.id)) { clearInterval(live.waitTimer); liveCountdown(row); }
+  if (row.status === 'accepted' && !live.started.has(row.id) && Date.now() < new Date(row.start_at).getTime() + 3000) { clearInterval(live.waitTimer); liveCountdown(row); }
   const s = ui.sess;
   if (s && s.opts.duel && s.opts.duel.live === row.id) {
     const opp = mineA ? row.b_score : row.a_score;
@@ -4427,7 +4516,7 @@ async function liveAccept() {
 }
 function liveDecline() { if (live.row) net.sb.rpc('live_answer', { duel: live.row.id, accept: false }); live.id = null; closeSheet(); }
 function liveCountdown(row) {
-  if (live.counting === row.id) return; live.counting = row.id;
+  if (live.counting === row.id || live.started.has(row.id)) return; live.counting = row.id; live.started.add(row.id);
   closeSheet(); if (ui.sess) closeLessonQuiet();
   S.duelSeen['s' + row.seed] = 1;
   const other = row.a === net.uid ? row.b : row.a, name = friendName(other);
@@ -4437,14 +4526,14 @@ function liveCountdown(row) {
     const left = Math.ceil((startAt - Date.now()) / 1000);
     if (left > 0) { el.innerHTML = `<div><p>Live duel vs <b>${esc(name)}</b></p><b class="n">${Math.min(left, 5)}</b></div>`; sfx('tap'); setTimeout(tick3, Math.min(1000, startAt - Date.now() - (left - 1) * 1000)); return; }
     el.remove(); live.counting = null;
-    startSession('timed', { duel: { live: row.id, seed: row.seed, upto: row.upto, name, opp: 0, a: row.a === net.uid } });
+    startSession('timed', { duel: { live: row.id, seed: row.seed, upto: row.upto, name, opp: 0, a: row.a === net.uid, start: startAt } });
   };
   tick3();
 }
 let liveSendTimer = null;
 function liveSend(s, final) {
   const d = s && s.opts.duel; if (!d || !d.live) return;
-  const go = () => net.sb.rpc('live_score', { duel: d.live, score: s.correct, final }).then(({ error }) => { if (final && !error) setTimeout(() => { if (live.row && live.row.id === d.live && live.row.status !== 'done') net.sb.rpc('live_score', { duel: d.live, score: s.correct, final: true }); }, 16000); });
+  const go = () => net.sb.rpc('live_score', { duel: d.live, score: s.correct, final }).then(({ error }) => { if (final && !error) setTimeout(() => { if (!(live.row && live.row.id === d.live && live.row.status === 'done')) net.sb.rpc('live_score', { duel: d.live, score: s.correct, final: true }); }, Math.max(16000, (d.start || 0) + 80000 - Date.now())); });
   clearTimeout(liveSendTimer);
   if (final) go(); else liveSendTimer = setTimeout(go, 150);
 }
@@ -4467,6 +4556,7 @@ function openScreen(what) {
   closeSheet(); ui.pop = null;
   if (what === 'duel' || what === 'live') { ui.tab = 'league'; ui.fr = 'duels'; }
   else if (what === 'cheer') { ui.tab = 'league'; ui.fr = 'feed'; }
+  else if (what === 'chat') { loadMessages().then(() => openChat(newestUnreadConv())); return; }
   else if (what === 'pass') { ui.tab = 'league'; ui.fr = 'rank'; ui.board = 'week'; }
   else if (what === 'streak') { ui.tab = 'learn'; ui.scrollToCurrent = true; }
   render(); loadBoard(true);
@@ -4482,6 +4572,116 @@ async function checkLiveInvite(say) {
     else if (say) toast('That live duel invite has expired. Challenge them back!');
   } catch (e) { }
 }
+/* ---------------- chat: group chat + private messages ---------------- */
+net.msgs = [];
+const convOf = (m) => m.to_id == null ? 'all' : (m.from_id === net.uid ? m.to_id : m.from_id);
+const inChat = () => ui.tab === 'league' && ui.fr === 'chat' && !ui.sess;
+function readMap() { try { return JSON.parse(localStorage.getItem('cq-read:' + net.uid) || '{}'); } catch (e) { return {}; } }
+function markRead(conv) { const r = readMap(); r[conv] = Date.now(); try { localStorage.setItem('cq-read:' + net.uid, JSON.stringify(r)); } catch (e) { } }
+function unread(conv) {
+  const r = readMap();
+  return net.msgs.filter((m) => m.from_id !== net.uid && (!conv || convOf(m) === conv) && new Date(m.created_at).getTime() > (r[convOf(m)] || 0)).length;
+}
+async function loadMessages() {
+  if (!net.sb) return;
+  const { data, error } = await net.sb.from('messages').select('id,from_id,to_id,body,created_at').order('created_at', { ascending: false }).limit(200);
+  if (!error && data) { net.msgs = data.reverse(); if (inChat()) { markRead(ui.conv || 'all'); refreshChat(); } else softRender(); }
+}
+function onMessage(m) {
+  if (!m || !m.id || net.msgs.some((x) => x.id === m.id)) return;
+  net.msgs.push(m); if (net.msgs.length > 400) net.msgs.shift();
+  const conv = convOf(m);
+  if (net.typing && net.typing[conv]) delete net.typing[conv];
+  if (inChat() && (ui.conv || 'all') === conv) { markRead(conv); appendMsg(m); if (m.from_id !== net.uid) sfx('tap'); }
+  else if (m.from_id !== net.uid) {
+    sfx('combo'); buzz(30);
+    if (!ui.sess) toast('💬 ' + friendName(m.from_id) + (conv === 'all' ? ' (group)' : '') + ': ' + m.body.slice(0, 60));
+    if (!ui.sess && !ui.sheet) softRender(); else refreshNav();
+  }
+}
+function refreshNav() { const nav = $('.nav'); if (!nav) return; const tmp = document.createElement('div'); tmp.innerHTML = `<nav class="nav" aria-label="Main">${navBtn('learn', I.house, 'Learn')}${navBtn('practice', I.dumbbell, 'Practice')}${navBtn('league', I.shield, 'League')}${navBtn('quests', I.target, 'Quests')}${navBtn('profile', I.user, 'Profile')}</nav>`; nav.replaceWith(tmp.firstChild); }
+let typingSent = 0;
+function sendTyping() {
+  if (!net.lobby || Date.now() - typingSent < 2500) return; typingSent = Date.now();
+  const conv = ui.conv || 'all';
+  try { net.lobby.send({ type: 'broadcast', event: 'typing', payload: { from: net.uid, to: conv === 'all' ? null : conv } }); } catch (e) { }
+}
+function onTyping(p) {
+  if (!p || typeof p.from !== 'string' || !friendRow(p.from) || p.from === net.uid) return;
+  if (p.to && p.to !== net.uid) return;
+  const conv = p.to ? p.from : 'all';
+  net.typing = net.typing || {}; net.typing[conv] = { who: p.from, until: Date.now() + 4000 };
+  showTyping(); setTimeout(showTyping, 4200);
+}
+function showTyping() {
+  const el = $('#typing'); if (!el) return;
+  const t = net.typing && net.typing[ui.conv || 'all'];
+  el.textContent = t && t.until > Date.now() ? friendName(t.who) + ' is typing…' : '';
+}
+function fmtTime(t) { const d = new Date(t); return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
+function dayLabel(t) { const k = dayKey(new Date(t)); return k === dayKey() ? 'Today' : k === addDays(dayKey(), -1) ? 'Yesterday' : new Date(t).toLocaleDateString([], { day: 'numeric', month: 'short' }); }
+function msgHtml(m, prev) {
+  const me = m.from_id === net.uid, r = friendRow(m.from_id) || { id: m.from_id, display_name: '?' };
+  const sameAsPrev = prev && prev.from_id === m.from_id && new Date(m.created_at) - new Date(prev.created_at) < 5 * 60000 && dayLabel(prev.created_at) === dayLabel(m.created_at);
+  const day = !prev || dayLabel(prev.created_at) !== dayLabel(m.created_at) ? `<div class="chat-day">${dayLabel(m.created_at)}</div>` : '';
+  const big = /^(\p{Extended_Pictographic}|‍|️){1,3}$/u.test(m.body.trim());
+  return `${day}<div class="msg ${me ? 'me' : ''} ${sameAsPrev ? 'cont' : ''}" data-id="${m.id}">
+    ${me ? '' : sameAsPrev ? '<span class="msg-av"></span>' : `<button class="msg-av" data-act="friend" data-id="${r.id}">${avatarEl(r, 'fav')}</button>`}
+    <div class="bubble-wrap">${!me && !sameAsPrev && (ui.conv || 'all') === 'all' ? `<div class="msg-name">${esc(r.display_name)}</div>` : ''}
+    <button class="bub ${big ? 'big' : ''}" ${me ? `data-act="msg-menu" data-id="${m.id}"` : ''}>${esc(m.body)}<span class="msg-t">${fmtTime(m.created_at)}</span></button></div></div>`;
+}
+function convMsgs(conv) { return net.msgs.filter((m) => convOf(m) === conv); }
+function renderChat() {
+  const conv = ui.conv || 'all';
+  if (conv !== 'all' && !friendRow(conv)) ui.conv = 'all';
+  markRead(ui.conv || 'all');
+  const others = net.rows.filter((r) => r.id !== net.uid).sort((a, b) => (isOnline(b.id) - isOnline(a.id)) || (unread(b.id) - unread(a.id)));
+  const chip = (id, label, av) => { const n = unread(id); return `<button class="conv ${conv === id ? 'on' : ''}" data-act="conv" data-id="${id}">${av}<span>${esc(label)}</span>${n ? `<b class="badge-n">${n}</b>` : ''}</button>`; };
+  const list = convMsgs(ui.conv || 'all');
+  const f = conv === 'all' ? null : friendRow(conv);
+  let html = `<div class="convs">${chip('all', 'Everyone', '<span class="fav grp">👥</span>')}${others.map((r) => chip(r.id, r.display_name.split(' ')[0], `<span class="avwrap">${avatarEl(r, 'fav')}${isOnline(r.id) ? '<span class="dot-on live"></span>' : ''}</span>`)).join('')}</div>`;
+  html += `<div class="chat-head">${f ? `<b>${esc(f.display_name)}</b> <span class="muted small">${isOnline(f.id) ? '· ' + statusOf(f.id) : '· ' + lastSeen(f)}</span><button class="linkbtn" data-act="friend" data-id="${f.id}">Profile</button>` : `<b>Group chat</b> <span class="muted small">· ${plural(net.rows.length, 'player')}, ${net.online ? [...net.online].filter((x) => x !== net.uid).length : 0} online</span>`}</div>`;
+  html += `<div class="chat" id="chat">${list.length ? list.map((m, i) => msgHtml(m, list[i - 1])).join('') : `<div class="chat-empty">${pip('happy', 'pipsvg')}<p>${f ? 'Say hi to ' + esc(f.display_name) + '!' : 'No messages yet. Start the conversation!'}</p></div>`}</div>
+    <div id="typing" class="typing"></div>
+    <div class="quick">${['👋', '👍', '😂', '🔥', '💪', '🎉'].map((e) => `<button data-act="quick" data-id="${e}">${e}</button>`).join('')}<button data-act="quick" data-id="Duel me! ⚔️" class="q-txt">Duel me! ⚔️</button><button data-act="quick" data-id="Good game! 🤝" class="q-txt">GG 🤝</button></div>
+    <form class="composer" id="chat-form" autocomplete="off"><input id="chat-in" maxlength="500" placeholder="${f ? 'Message ' + esc(f.display_name.split(' ')[0]) : 'Message everyone'}…" value="${esc(ui.draft || '')}" enterkeyhint="send"><button class="send" type="submit" aria-label="Send">➤</button></form>`;
+  return html;
+}
+function lastSeen(r) {
+  const t = r.updated_at ? new Date(r.updated_at).getTime() : 0; if (!t) return 'offline';
+  const m = Math.round((Date.now() - t) / 60000);
+  return m < 2 ? 'active just now' : m < 60 ? 'active ' + m + 'm ago' : m < 1440 ? 'active ' + Math.round(m / 60) + 'h ago' : 'active ' + Math.round(m / 1440) + 'd ago';
+}
+function scrollChat() { const m = $('#main'); if (m) m.scrollTop = m.scrollHeight; }
+function refreshChat() { if (!inChat()) return; softRender(); requestAnimationFrame(scrollChat); }
+function appendMsg(m) {
+  const box = $('#chat'); if (!box) return softRender();
+  const list = convMsgs(ui.conv || 'all'), i = list.findIndex((x) => x.id === m.id);
+  const empty = box.querySelector('.chat-empty'); if (empty) empty.remove();
+  box.insertAdjacentHTML('beforeend', msgHtml(m, list[i - 1]));
+  showTyping();
+  const main = $('#main'); if (main && (m.from_id === net.uid || main.scrollHeight - main.scrollTop - main.clientHeight < 260)) requestAnimationFrame(scrollChat);
+}
+async function sendMsg(text) {
+  text = String(text || '').trim().slice(0, 500); if (!text) return;
+  const conv = ui.conv || 'all';
+  const { data, error } = await net.sb.from('messages').insert({ from_id: net.uid, to_id: conv === 'all' ? null : conv, body: text }).select('id,from_id,to_id,body,created_at').single();
+  if (error) { toast(/slow down/.test(error.message) ? 'Slow down a little 🙂' : 'Could not send. Check your internet.'); return false; }
+  onMessage(data); return true;
+}
+function openChat(conv) { closeSheet(); ui.tab = 'league'; ui.fr = 'chat'; ui.conv = conv || 'all'; render(); requestAnimationFrame(scrollChat); loadMessages(); }
+/* the conversation with the newest unread message */
+function newestUnreadConv() {
+  const r = readMap(); const m = net.msgs.slice().reverse().find((x) => x.from_id !== net.uid && new Date(x.created_at).getTime() > (r[convOf(x)] || 0));
+  return m ? convOf(m) : 'all';
+}
+/* who is online: a strip of friends at the top of the League tab */
+function onlineStrip() {
+  const on = net.rows.filter((r) => isOnline(r.id));
+  if (!on.length) return `<div class="online-strip empty"><span class="muted small">No friends online right now. ${net.rows.length > 1 ? 'Send a nudge or a message!' : 'Invite some friends!'}</span></div>`;
+  return `<div class="online-strip"><div class="os-title"><span class="dot-on live"></span> Online now · ${on.length}</div><div class="os-list">${on.map((r) => `<button class="os-item" data-act="friend" data-id="${r.id}"><span class="avwrap">${avatarEl(r, 'av')}<span class="dot-on live"></span></span><b>${esc(r.display_name.split(' ')[0])}</b><small>${esc(statusOf(r.id))}</small></button>`).join('')}</div></div>`;
+}
+
 /* ---------------- push notifications ---------------- */
 const pushSupported = () => 'serviceWorker' in navigator && 'PushManager' in window && 'Notification' in window;
 const pushOn = () => pushSupported() && Notification.permission === 'granted' && !!net.pushOk;
@@ -4572,7 +4772,7 @@ async function netEnter() {
   afterLoad();
   if (S.onboarded && S.pos !== currentIndex()) save();
   loadBoard(true);
-  startRealtime(); pushCheck();
+  startRealtime(); pushCheck(); loadMessages();
   if (net.openAfter) { const o = net.openAfter; net.openAfter = ''; openScreen(o); } else { checkLiveInvite(); maybeAskPush(); }
   if ('serviceWorker' in navigator) navigator.serviceWorker.addEventListener('message', (e) => { if (e.data && e.data.open) openScreen(e.data.open); });
   swReg();
